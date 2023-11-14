@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class GameDTO {
-    private Integer id;
+    private String id;
     private Player player;
     private Byte dice1;
     private Byte dice2;

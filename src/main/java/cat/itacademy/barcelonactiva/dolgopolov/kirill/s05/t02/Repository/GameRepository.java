@@ -10,13 +10,13 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 
-public interface GameRepository extends MongoRepository<Game, Long> {
+public interface GameRepository extends MongoRepository<Game, String> {
     @Transactional
     void deleteAllByPlayer(Player player);
 
     List<Game> getAllByPlayer(Player player);
 
-    double countByPlayerId(Long playerId);
+    double countByPlayerId(String playerId);
 
-    double countByPlayerIdAndWinIsTrue(Long playerId);
+    double countByPlayerIdAndWinIsTrue(String playerId);
 }

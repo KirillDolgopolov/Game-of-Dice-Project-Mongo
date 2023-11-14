@@ -30,11 +30,11 @@ public class GameService {
         }
     }
 
-    public double getTotalGamesForPlayer(Long playerId) {
+    public double getTotalGamesForPlayer(String playerId) {
         return gameRepository.countByPlayerId(playerId);
     }
 
-    public double getTotalWinsForPlayer(Long playerId) {
+    public double getTotalWinsForPlayer(String playerId) {
         return gameRepository.countByPlayerIdAndWinIsTrue(playerId);
     }
 

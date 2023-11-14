@@ -56,56 +56,56 @@ public class PlayerService {
         return gameRepository.getAllByPlayer(player);
     }
 
-//    public List<PlayerWinPercentage> getPlayerWinPercentage() {
-//        List<Player> allPlayers = (List<Player>) playerRepository.findAll();
-//
-//        List<PlayerWinPercentage> result = new ArrayList<>();
-//
-//        for (Player player : allPlayers) {
-//            double totalGames = gameService.getTotalGamesForPlayer(player.getPlayerID());
-//            double totalWins = gameService.getTotalWinsForPlayer(player.getPlayerID());
-//
-//            double winPercentage = totalGames == 0 ? 0 : (double) totalWins / totalGames * 100;
-//
-//            result.add(new PlayerWinPercentage(player, winPercentage));
-//        }
-//
-//        return result;
-//    }
-//
-//
-//    public double getAverageWinPercentage() {
-//        List<Player> allPlayers = (List<Player>) playerRepository.findAll();
-//        if (allPlayers.isEmpty()) {
-//            return 0.0;
-//        }
-//
-//        double totalWinPercentage = 0.0;
-//        for (Player player : allPlayers) {
-//            double totalGames = gameRepository.countByPlayerId(player.getPlayerID());
-//            double totalWins = gameRepository.countByPlayerIdAndWinIsTrue(player.getPlayerID());
-//
-//            if (totalGames > 0) {
-//                double winPercentage = ((double) totalWins / totalGames) * 100;
-//                totalWinPercentage += winPercentage;
-//            }
-//        }
-//
-//        return totalWinPercentage / allPlayers.size();
-//    }
-//
-//    public PlayerWinPercentage theLoser() {
-//        List<PlayerWinPercentage> allPlayersWinPercentage = new ArrayList<>(getPlayerWinPercentage());
-//        Collections.sort(allPlayersWinPercentage, new PlayerComparator());
-//
-//        return allPlayersWinPercentage.get(0);
-//    }
-//
-//    public PlayerWinPercentage theWinner() {
-//        List<PlayerWinPercentage> allPlayersWinPercentage = new ArrayList<>(getPlayerWinPercentage());
-//        Collections.sort(allPlayersWinPercentage, new PlayerComparator());
-//
-//        return allPlayersWinPercentage.get(allPlayersWinPercentage.size()-1);
-//    }
+    public List<PlayerWinPercentage> getPlayerWinPercentage() {
+        List<Player> allPlayers = (List<Player>) playerRepository.findAll();
+
+        List<PlayerWinPercentage> result = new ArrayList<>();
+
+        for (Player player : allPlayers) {
+            double totalGames = gameService.getTotalGamesForPlayer(player.getId());
+            double totalWins = gameService.getTotalWinsForPlayer(player.getId());
+
+            double winPercentage = totalGames == 0 ? 0 : (double) totalWins / totalGames * 100;
+
+            result.add(new PlayerWinPercentage(player, winPercentage));
+        }
+
+        return result;
+    }
+
+
+    public double getAverageWinPercentage() {
+        List<Player> allPlayers = (List<Player>) playerRepository.findAll();
+        if (allPlayers.isEmpty()) {
+            return 0.0;
+        }
+
+        double totalWinPercentage = 0.0;
+        for (Player player : allPlayers) {
+            double totalGames = gameRepository.countByPlayerId(player.getId());
+            double totalWins = gameRepository.countByPlayerIdAndWinIsTrue(player.getId());
+
+            if (totalGames > 0) {
+                double winPercentage = ((double) totalWins / totalGames) * 100;
+                totalWinPercentage += winPercentage;
+            }
+        }
+
+        return totalWinPercentage / allPlayers.size();
+    }
+
+    public PlayerWinPercentage theLoser() {
+        List<PlayerWinPercentage> allPlayersWinPercentage = new ArrayList<>(getPlayerWinPercentage());
+        Collections.sort(allPlayersWinPercentage, new PlayerComparator());
+
+        return allPlayersWinPercentage.get(0);
+    }
+
+    public PlayerWinPercentage theWinner() {
+        List<PlayerWinPercentage> allPlayersWinPercentage = new ArrayList<>(getPlayerWinPercentage());
+        Collections.sort(allPlayersWinPercentage, new PlayerComparator());
+
+        return allPlayersWinPercentage.get(allPlayersWinPercentage.size()-1);
+    }
 
 }
