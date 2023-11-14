@@ -52,35 +52,35 @@ public class PlayerController {
         } else return new ResponseEntity<>(existingPlayer, HttpStatus.OK);
     }
 
-    @GetMapping("{id}/games")
-    public ResponseEntity<ArrayList<Game>> getAllByPlayer(@PathVariable("id") Long playerId) {
-        Optional<Player> playerOptional = playerService.findPlayerById(playerId);
-        if (playerOptional.isPresent()) {
-            ArrayList<Game> arrayOfPlayers = new ArrayList<>();
-            arrayOfPlayers.addAll(playerService.getAllByPlayer(playerOptional.get()));
-            return new ResponseEntity<>(arrayOfPlayers, HttpStatus.OK);
-        } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-    }
-
-    @GetMapping
-    public ResponseEntity<List<PlayerWinPercentage>> getAllPlayersWithAverageWin() {
-        return new ResponseEntity<>(playerService.getPlayerWinPercentage(), HttpStatus.OK);
-    }
-
-
-    @GetMapping("/ranking")
-    public ResponseEntity<Double> getAverageRanking() {
-        return new ResponseEntity<>(playerService.getAverageWinPercentage(), HttpStatus.OK);
-    }
-
-
-    @GetMapping("/ranking/loser")
-    public ResponseEntity<PlayerWinPercentage> getLoser(){
-        return new ResponseEntity<>(playerService.theLoser(), HttpStatus.OK);
-
-    } @GetMapping("/ranking/winner")
-    public ResponseEntity<PlayerWinPercentage> getWinner(){
-        return new ResponseEntity<>(playerService.theWinner(), HttpStatus.OK);
-    }
+//    @GetMapping("{id}/games")
+//    public ResponseEntity<ArrayList<Game>> getAllByPlayer(@PathVariable("id") Long playerId) {
+//        Optional<Player> playerOptional = playerService.findPlayerById(playerId);
+//        if (playerOptional.isPresent()) {
+//            ArrayList<Game> arrayOfPlayers = new ArrayList<>();
+//            arrayOfPlayers.addAll(playerService.getAllByPlayer(playerOptional.get()));
+//            return new ResponseEntity<>(arrayOfPlayers, HttpStatus.OK);
+//        } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//
+//    }
+//
+//    @GetMapping
+//    public ResponseEntity<List<PlayerWinPercentage>> getAllPlayersWithAverageWin() {
+//        return new ResponseEntity<>(playerService.getPlayerWinPercentage(), HttpStatus.OK);
+//    }
+//
+//
+//    @GetMapping("/ranking")
+//    public ResponseEntity<Double> getAverageRanking() {
+//        return new ResponseEntity<>(playerService.getAverageWinPercentage(), HttpStatus.OK);
+//    }
+//
+//
+//    @GetMapping("/ranking/loser")
+//    public ResponseEntity<PlayerWinPercentage> getLoser(){
+//        return new ResponseEntity<>(playerService.theLoser(), HttpStatus.OK);
+//
+//    } @GetMapping("/ranking/winner")
+//    public ResponseEntity<PlayerWinPercentage> getWinner(){
+//        return new ResponseEntity<>(playerService.theWinner(), HttpStatus.OK);
+//    }
 }

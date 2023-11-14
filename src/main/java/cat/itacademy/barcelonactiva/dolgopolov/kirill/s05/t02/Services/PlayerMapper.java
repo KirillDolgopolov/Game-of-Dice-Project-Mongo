@@ -6,12 +6,12 @@ import lombok.Builder;
 
 public class PlayerMapper {
     public static Player toEntity(PlayerDTO playerDTO) {
-        Player player = Player.builder().playerID(playerDTO.getPlayerID()).name(playerDTO.getName()).creationTime(playerDTO.getCreationTime()).build();
+        Player player = Player.builder().id(playerDTO.getPlayerID()).name(playerDTO.getName()).creationTime(playerDTO.getCreationTime()).build();
         return player;
     }
 
     public static PlayerDTO toDTO(Player player) {
-        PlayerDTO playerDTO = PlayerDTO.builder().playerID(player.getPlayerID()).name(player.getName()).creationTime(player.getCreationTime()).build();
+        PlayerDTO playerDTO = PlayerDTO.builder().playerID(player.getId()).name(player.getName()).creationTime(player.getCreationTime()).build();
         return playerDTO;
     }
 }

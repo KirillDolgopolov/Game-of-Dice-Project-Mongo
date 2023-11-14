@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
-import org.hibernate.annotations.CreationTimestamp;
-
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.mongodb.core.mapping.Field;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,20 +16,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class Player {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long playerID;
+    private String id;
 
     @Column
     private String name;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "creation_time")
+    @CreatedDate
+    @Field("creation_time")
     private LocalDateTime creationTime;
-
 
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -40,11 +37,9 @@ public class Player {
         this.creationTime = LocalDateTime.now();
     }
 
-    public Long getId() {
-        return playerID;
+    public String getId() {
+        return id;
     }
-
-
-
-
 }
+
+

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @Data
 public class PlayerDTO {
-    private Long playerID;
+    private String playerID;
     private String name;
-    private LocalDateTime creationTime;
+    private LocalDateTime creationTime=  LocalDateTime.now();
 }

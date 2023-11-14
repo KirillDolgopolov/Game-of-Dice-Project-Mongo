@@ -23,7 +23,7 @@ public class GameController {
 
 
     @PostMapping("/{playerId}/games")
-    public ResponseEntity<Game> createGameForPlayer(@PathVariable Long playerId) {
+    public ResponseEntity<Game> createGameForPlayer(@PathVariable String playerId) {
         Optional<Player> playerOptional = playerService.findPlayerById(playerId);
 
         Player player;
@@ -46,7 +46,7 @@ public class GameController {
 
 
     @DeleteMapping("/{playerId}/games")
-    public ResponseEntity<Void> deleteGamesByPlayerID(@PathVariable Long playerId) {
+    public ResponseEntity<Void> deleteGamesByPlayerID(@PathVariable String playerId) {
         Optional<Player> playerOptional = playerService.findPlayerById(playerId);
         if (playerOptional.isPresent()) {
             gameService.deleteGames(playerOptional.get());
